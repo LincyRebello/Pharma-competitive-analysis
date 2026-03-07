@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pipeline Wars — Biotech Competitive Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#f5f2eb;--paper:#faf8f3;--ink:#1a1612;--ink2:#3d3830;
+  --muted:#8a8278;--muted2:#b5b0a8;--border:#ddd9d0;--border2:#c8c3b8;
+  --red:#c0392b;--blue:#1a4a8a;--green:#1a6b3a;--amber:#b8860b;
+  --ph1bg:#dbeafe;--ph1t:#1e3a6e;--ph2bg:#fef3c7;--ph2t:#7c5a00;
+  --ph3bg:#dcfce7;--ph3t:#145a2e;--appbg:#fce7f3;--appt:#7c1d4e;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;}
+
+.masthead{background:var(--ink);color:var(--bg);padding:0 3rem;display:flex;align-items:center;justify-content:space-between;height:44px;border-bottom:3px solid var(--red);}
+.masthead-txt{font-family:'Barlow Condensed',sans-serif;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(245,242,235,0.45);}
+
+header{background:var(--paper);border-bottom:2px solid var(--ink);padding:3rem 3rem 2rem;position:relative;overflow:hidden;}
+.header-rule{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;}
+.header-rule-line{flex:1;height:1px;background:var(--border2);}
+.header-rule-text{font-family:'Barlow Condensed',sans-serif;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);}
+.header-title{font-family:'Libre Baskerville',serif;font-size:clamp(3rem,7vw,5.5rem);font-weight:700;line-height:0.9;letter-spacing:-0.02em;margin-bottom:0.3rem;}
+.header-title .wars{font-style:italic;color:var(--red);}
+.header-deck{font-weight:300;font-size:1rem;color:var(--ink2);max-width:580px;line-height:1.6;margin:1rem 0 2rem;border-left:3px solid var(--red);padding-left:1rem;}
+.header-bg-word{position:absolute;right:-1rem;top:50%;transform:translateY(-50%);font-family:'Libre Baskerville',serif;font-size:14rem;font-weight:700;color:rgba(26,22,18,0.04);pointer-events:none;line-height:1;user-select:none;font-style:italic;}
+
+.stats-row{display:flex;gap:0;border-top:1px solid var(--border);}
+.stat-block{flex:1;padding:1.2rem 1.5rem;border-right:1px solid var(--border);}
+.stat-block:last-child{border-right:none;}
+.stat-num{font-family:'Libre Baskerville',serif;font-size:2rem;font-weight:700;line-height:1;}
+.stat-label{font-family:'Barlow Condensed',sans-serif;font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-top:0.2rem;}
+.stat-sub{font-size:0.58rem;color:var(--muted);margin-top:0.1rem;}
+
+.search-wrap{background:var(--ink);padding:0.9rem 3rem;display:flex;align-items:center;gap:1rem;}
+.search-label{font-family:'Barlow Condensed',sans-serif;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(245,242,235,0.4);white-space:nowrap;}
+.search-input{flex:1;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);color:var(--bg);font-family:'Barlow',sans-serif;font-size:0.85rem;padding:0.5rem 1rem;outline:none;transition:border 0.2s;}
+.search-input::placeholder{color:rgba(245,242,235,0.22);}
+.search-input:focus{border-color:var(--red);}
+.search-clear{font-family:'Barlow Condensed',sans-serif;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,242,235,0.3);background:none;border:none;cursor:pointer;}
+.search-clear:hover{color:var(--bg);}
+.search-count{font-family:'Barlow Condensed',sans-serif;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--red);white-space:nowrap;}
+
+.nav-strip{background:#231f1a;padding:0 3rem;display:flex;align-items:center;gap:0;overflow-x:auto;position:sticky;top:0;z-index:100;}
+.nav-btn{font-family:'Barlow Condensed',sans-serif;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.85rem 1.2rem;border:none;background:transparent;color:rgba(245,242,235,0.42);cursor:pointer;border-bottom:3px solid transparent;transition:all 0.2s;white-space:nowrap;}
+.nav-btn:hover{color:var(--bg);}
+.nav-btn.active{color:var(--bg);border-bottom-color:var(--red);}
+.nav-count{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;background:rgba(255,255,255,0.07);border-radius:2px;font-size:0.56rem;margin-left:0.3rem;}
+.nav-sep{width:1px;height:24px;background:rgba(255,255,255,0.08);margin:0 0.5rem;}
+.nav-tl-btn{margin-left:auto;font-family:'Barlow Condensed',sans-serif;font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.85rem 1.2rem;border:none;background:transparent;color:rgba(245,242,235,0.4);cursor:pointer;border-bottom:3px solid transparent;transition:all 0.2s;white-space:nowrap;}
+.nav-tl-btn:hover,.nav-tl-btn.active{color:var(--bg);border-bottom-color:#b8860b;}
+
+.main{padding:2.5rem 3rem;max-width:1400px;margin:0 auto;}
+
+/* MARKET BANNER */
+.market-banner{display:flex;align-items:stretch;margin-bottom:2rem;border:1.5px solid var(--border2);overflow:hidden;}
+.mb-label{background:var(--ink);color:var(--bg);padding:0.9rem 1.2rem;font-family:'Barlow Condensed',sans-serif;font-size:0.56rem;letter-spacing:0.15em;text-transform:uppercase;display:flex;align-items:center;white-space:nowrap;writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg);}
+.mb-bars{flex:1;display:flex;gap:0;}
+.mb-bar-item{flex:1;padding:0.7rem 1rem;border-right:1px solid var(--border);position:relative;overflow:hidden;cursor:pointer;transition:background 0.15s;}
+.mb-bar-item:last-child{border-right:none;}
+.mb-bar-item:hover{background:#f0ece3;}
+.mb-fill{position:absolute;left:0;top:0;bottom:0;background:rgba(192,57,43,0.07);transition:width 1.4s cubic-bezier(0.16,1,0.3,1);}
+.mb-name{font-family:'Barlow Condensed',sans-serif;font-size:0.58rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);position:relative;z-index:1;}
+.mb-size{font-family:'Libre Baskerville',serif;font-size:1.15rem;font-weight:700;line-height:1.1;position:relative;z-index:1;margin-top:0.15rem;}
+.mb-year{font-size:0.52rem;color:var(--muted);position:relative;z-index:1;}
+
+/* SEARCH PANEL */
+.search-panel{display:none;background:var(--paper);border:1.5px solid var(--border2);margin-bottom:2rem;}
+.search-panel.visible{display:block;}
+.search-ph{background:var(--ink);color:var(--bg);padding:0.55rem 1.2rem;font-family:'Barlow Condensed',sans-serif;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;}
+.search-hit{display:grid;grid-template-columns:160px 100px 1fr 180px;align-items:center;padding:0.8rem 1.2rem;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.15s;}
+.search-hit:last-child{border-bottom:none;}
+.search-hit:hover{background:#f0ece3;}
+.sh-name{font-family:'Libre Baskerville',serif;font-size:0.9rem;font-weight:700;}
+.sh-co{font-size:0.58rem;color:var(--muted);}
+.sh-ind{font-size:0.6rem;color:var(--ink2);font-family:'Barlow Condensed',sans-serif;letter-spacing:0.06em;text-transform:uppercase;}
+.sh-mech{font-size:0.62rem;color:var(--ink2);line-height:1.5;}
+
+/* INDICATIONS */
+.indication{display:none;animation:fadeIn 0.3s;}
+.indication.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
+.ind-header{display:grid;grid-template-columns:1fr auto;align-items:end;gap:2rem;margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:2px solid var(--ink);}
+.ind-kicker{font-family:'Barlow Condensed',sans-serif;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);margin-bottom:0.3rem;}
+.ind-name{font-family:'Libre Baskerville',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;line-height:1;letter-spacing:-0.01em;}
+.ind-desc{font-size:0.78rem;color:var(--ink2);line-height:1.8;max-width:600px;margin-top:0.4rem;}
+.ind-stats{display:flex;gap:2rem;text-align:right;flex-shrink:0;}
+.istat-num{font-family:'Libre Baskerville',serif;font-size:1.7rem;font-weight:700;line-height:1;}
+.istat-lbl{font-family:'Barlow Condensed',sans-serif;font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);}
+
+.winner-banner{background:var(--ink);color:var(--bg);padding:0.85rem 1.4rem;display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;}
+.winner-lbl{font-family:'Barlow Condensed',sans-serif;font-size:0.56rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(245,242,235,0.4);flex-shrink:0;}
+.winner-txt{font-family:'Libre Baskerville',serif;font-size:0.83rem;font-style:italic;}
+.winner-flag{font-family:'Barlow Condensed',sans-serif;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;margin-left:auto;color:var(--red);flex-shrink:0;}
+
+.battlefield{display:flex;flex-direction:column;gap:1px;border:1.5px solid var(--border2);background:var(--border2);margin-bottom:1.5rem;}
+.bf-head{display:grid;grid-template-columns:165px 1fr 100px 115px 130px 80px;gap:0;background:var(--ink);padding:0.55rem 1.2rem;}
+.bh{font-family:'Barlow Condensed',sans-serif;font-size:0.55rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(245,242,235,0.38);}
+.bf-row{display:grid;grid-template-columns:165px 1fr 100px 115px 130px 80px;gap:0;background:var(--paper);padding:0.9rem 1.2rem;align-items:center;transition:background 0.15s;cursor:pointer;opacity:0;animation:rowIn 0.4s forwards;}
+@keyframes rowIn{to{opacity:1;}}
+.bf-row:hover{background:#edeae2;}
+.drug-brand{font-family:'Libre Baskerville',serif;font-size:0.93rem;font-weight:700;line-height:1;}
+.drug-gen{font-size:0.57rem;color:var(--muted);margin-top:0.1rem;}
+.drug-co{font-size:0.58rem;color:var(--ink2);font-weight:500;margin-top:0.08rem;}
+.mech-cell{font-size:0.63rem;color:var(--ink2);line-height:1.5;padding-right:0.8rem;}
+.phase-tag{font-family:'Barlow Condensed',sans-serif;font-size:0.58rem;letter-spacing:0.05em;padding:0.17rem 0.5rem;border-radius:2px;display:inline-block;font-weight:600;}
+.enroll-num{font-family:'Libre Baskerville',serif;font-size:0.93rem;font-weight:700;}
+.enroll-sub{font-size:0.52rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;}
+.catalyst-cell{font-size:0.6rem;color:var(--ink2);line-height:1.55;}
+.risk-tag{font-family:'Barlow Condensed',sans-serif;font-size:0.56rem;letter-spacing:0.08em;text-transform:uppercase;display:inline-flex;align-items:center;gap:0.22rem;font-weight:600;}
+.risk-pip{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+
+.insight-box{border:1.5px solid var(--border2);display:grid;grid-template-columns:1fr 1fr 1fr;margin-bottom:2rem;}
+.insight-item{padding:1.3rem;border-right:1px solid var(--border);}
+.insight-item:last-child{border-right:none;}
+.ins-kicker{font-family:'Barlow Condensed',sans-serif;font-size:0.55rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);margin-bottom:0.2rem;}
+.ins-head{font-family:'Libre Baskerville',serif;font-size:0.88rem;font-weight:700;margin-bottom:0.3rem;line-height:1.2;}
+.ins-body{font-size:0.62rem;color:var(--ink2);line-height:1.9;}
+
+/* TIMELINE */
+.tl-section{display:none;}
+.tl-section.active{display:block;}
+.tl-title{font-family:'Libre Baskerville',serif;font-size:2rem;font-weight:700;margin-bottom:0.3rem;}
+.tl-sub{font-size:0.78rem;color:var(--ink2);margin-bottom:2rem;line-height:1.7;border-left:3px solid var(--amber);padding-left:1rem;}
+.tl-year-strip{display:grid;grid-template-columns:180px repeat(4,1fr);border-bottom:2px solid var(--ink);background:var(--paper);margin-bottom:1px;}
+.tl-yh{padding:0.55rem 1rem;font-family:'Barlow Condensed',sans-serif;font-size:0.68rem;letter-spacing:0.1em;font-weight:700;text-transform:uppercase;border-right:1px solid var(--border2);}
+.tl-yh:last-child{border-right:none;}
+.tl-yh.now{background:var(--ink);color:var(--bg);}
+.tl-rows{display:flex;flex-direction:column;gap:1px;background:var(--border);}
+.tl-row{display:grid;grid-template-columns:180px repeat(4,1fr);background:var(--paper);}
+.tl-row-lbl{padding:0.75rem 1rem;border-right:1px solid var(--border2);}
+.tl-dname{font-family:'Libre Baskerville',serif;font-size:0.78rem;font-weight:700;}
+.tl-dind{font-size:0.52rem;color:var(--muted);font-family:'Barlow Condensed',sans-serif;letter-spacing:0.06em;text-transform:uppercase;margin-top:0.1rem;}
+.tl-cell{border-right:1px solid var(--border2);padding:0.4rem 0.6rem;display:flex;align-items:center;}
+.tl-cell:last-child{border-right:none;}
+.tl-chip{padding:0.25rem 0.6rem;border-radius:2px;font-family:'Barlow Condensed',sans-serif;font-size:0.58rem;letter-spacing:0.05em;font-weight:600;cursor:pointer;transition:filter 0.2s;white-space:nowrap;}
+.tl-chip:hover{filter:brightness(0.88);}
+.tl-catalyst-txt{font-size:0.55rem;color:var(--muted);margin-top:0.15rem;line-height:1.4;}
+
+/* MODAL */
+.overlay{position:fixed;inset:0;background:rgba(26,22,18,0.75);z-index:1000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
+.overlay.open{display:flex;}
+.modal{background:var(--paper);border:2px solid var(--ink);max-width:620px;width:90%;position:relative;animation:mIn 0.25s cubic-bezier(0.16,1,0.3,1);max-height:88vh;overflow-y:auto;}
+@keyframes mIn{from{transform:translateY(20px) scale(0.97);opacity:0;}to{transform:none;opacity:1;}}
+.modal-top{background:var(--ink);color:var(--bg);padding:1.5rem 2rem;position:relative;}
+.modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;font-family:'Barlow Condensed',sans-serif;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,242,235,0.38);cursor:pointer;}
+.modal-close:hover{color:var(--bg);}
+.modal-kicker{font-family:'Barlow Condensed',sans-serif;font-size:0.56rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(245,242,235,0.38);margin-bottom:0.22rem;}
+.modal-name{font-family:'Libre Baskerville',serif;font-size:1.9rem;font-weight:700;line-height:1;}
+.modal-gen{font-size:0.62rem;color:rgba(245,242,235,0.38);margin-top:0.18rem;}
+.modal-body{padding:1.8rem 2rem;}
+.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.4rem;}
+.mg-lbl{font-family:'Barlow Condensed',sans-serif;font-size:0.52rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:0.15rem;}
+.mg-val{font-weight:600;font-size:0.83rem;color:var(--ink);line-height:1.3;}
+.momentum-block{background:var(--bg);border:1px solid var(--border2);padding:1rem 1.2rem;margin-bottom:1.2rem;display:flex;align-items:center;gap:1.5rem;}
+.mom-score{font-family:'Libre Baskerville',serif;font-size:2.4rem;font-weight:700;line-height:1;}
+.mom-lbl{font-family:'Barlow Condensed',sans-serif;font-size:0.56rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
+.mom-bar-out{flex:1;height:7px;background:var(--border);border-radius:1px;overflow:hidden;}
+.mom-bar-in{height:100%;border-radius:1px;transition:width 1s;}
+.mom-breakdown{font-size:0.58rem;color:var(--muted);line-height:2;margin-top:0.25rem;}
+.modal-insight{background:var(--bg);border-left:3px solid var(--red);padding:1rem 1.2rem;font-size:0.67rem;color:var(--ink2);line-height:1.9;margin-bottom:1rem;}
+.modal-insight strong{color:var(--ink);}
+.modal-edge{font-size:0.63rem;color:var(--ink2);line-height:1.7;padding:0.8rem 1rem;background:var(--bg);border-left:3px solid var(--amber);margin-bottom:1rem;}
+.modal-edge strong{color:var(--ink);}
+.modal-nct{font-size:0.56rem;color:var(--muted);letter-spacing:0.04em;}
+.modal-nct a{color:var(--blue);text-decoration:none;}
+.modal-nct a:hover{text-decoration:underline;}
+
+footer{background:var(--ink);color:rgba(245,242,235,0.38);padding:1.8rem 3rem;display:flex;justify-content:space-between;align-items:center;font-family:'Barlow Condensed',sans-serif;font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;margin-top:4rem;border-top:3px solid var(--red);}
+footer span{color:rgba(245,242,235,0.62);}
+
+@media(max-width:900px){
+  .masthead,.search-wrap,.nav-strip,.main{padding-left:1.2rem;padding-right:1.2rem;}
+  header{padding:2rem 1.2rem 1.5rem;}
+  .bf-head,.bf-row{grid-template-columns:130px 1fr 90px;}
+  .enroll-num,.risk-tag,.catalyst-cell,.bh:nth-child(4),.bh:nth-child(5),.bh:nth-child(6){display:none;}
+  .ind-header{grid-template-columns:1fr;}
+  .ind-stats{display:none;}
+  .insight-box{grid-template-columns:1fr;}
+  .insight-item{border-right:none;border-bottom:1px solid var(--border);}
+  .market-banner{display:none;}
+  .stats-row{flex-wrap:wrap;}
+  .stat-block{min-width:50%;}
+  footer{flex-direction:column;gap:0.4rem;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="masthead-txt">Biotech Competitive Intelligence · Public Data Edition</div>
+  <div class="masthead-txt">ClinicalTrials.gov · FDA.gov · 2024–2025</div>
+</div>
+
+<header>
+  <div class="header-bg-word">Wars</div>
+  <div class="header-rule">
+    <div class="header-rule-line"></div>
+    <div class="header-rule-text">Indication Intelligence Report · v2.0</div>
+    <div class="header-rule-line"></div>
+  </div>
+  <div class="header-title">Pipeline <span class="wars">Wars</span></div>
+  <div class="header-deck">Who is competing, who is winning, and what it means — a competitive landscape across five of the most contested indications in drug development today.</div>
+  <div class="stats-row">
+    <div class="stat-block"><div class="stat-num" id="totalDrugs">—</div><div class="stat-label">Drug Candidates</div></div>
+    <div class="stat-block"><div class="stat-num" id="totalCos">—</div><div class="stat-label">Companies</div></div>
+    <div class="stat-block"><div class="stat-num">5</div><div class="stat-label">Indications</div></div>
+    <div class="stat-block"><div class="stat-num" id="totalApp">—</div><div class="stat-label">Already Approved</div></div>
+    <div class="stat-block"><div class="stat-num" id="totalPh3">—</div><div class="stat-label">In Phase III</div><div class="stat-sub">Near-term readouts</div></div>
+  </div>
+</header>
+
+<div class="search-wrap">
+  <div class="search-label">Search</div>
+  <input class="search-input" id="searchInput" type="text" placeholder="Search by drug name, company, mechanism, or indication…"/>
+  <button class="search-clear" id="searchClear">Clear</button>
+  <div class="search-count" id="searchCount"></div>
+</div>
+
+<nav class="nav-strip" id="navStrip">
+  <button class="nav-tl-btn" id="tlBtn">⏱ Readout Timeline</button>
+</nav>
+
+<div class="main" id="mainContent">
+  <div class="market-banner" id="mktBanner">
+    <div class="mb-label">Market Size 2030</div>
+    <div class="mb-bars" id="mbBars"></div>
+  </div>
+  <div class="search-panel" id="searchPanel">
+    <div class="search-ph" id="searchPH">Search Results</div>
+    <div id="searchResults"></div>
+  </div>
+  <div id="indsWrap"></div>
+  <div class="tl-section" id="tlSection">
+    <div class="tl-title">Readout Timeline</div>
+    <div class="tl-sub">Key Phase 3 data readouts and expected catalysts across all tracked indications. Each event is a potential stock-moving moment and commercial inflection point. Click any chip to view drug details.</div>
+    <div id="tlContent"></div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <div class="modal-top">
+      <button class="modal-close" id="modalClose">[×] Close</button>
+      <div id="modalTop"></div>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<footer>
+  <div>Pipeline Wars · Competitive Intelligence Dashboard · v2.0</div>
+  <div>Data: <span>FDA.gov</span> · <span>ClinicalTrials.gov</span> · Published trial results · <span>2024–2025</span></div>
+</footer>
+
+<script>
+const DATA = [
+  {
+    id:"alzheimers",name:"Alzheimer's Disease",kicker:"Neurology · Memory & Cognition",
+    mktSize:"$13B",mktPct:45,
+    desc:"The most expensive disease in the US — $360B annual cost. Anti-amyloid therapies have finally broken through after decades of failure. The race is now who can make treatment safer, more accessible, and effective earlier.",
+    winner:"Leqembi (Eisai/Biogen) holds first-mover advantage as the only fully approved anti-amyloid therapy, but donanemab and next-gen SC formulations are intensifying competition.",
+    winnerFlag:"First Mover Advantage",
+    insights:[
+      {k:"Market Size",h:"$13B+ by 2030",b:"Alzheimer's is one of the largest addressable markets in medicine. Even modest penetration — limited today by IV infusion logistics — represents billions for early movers."},
+      {k:"Key Risk",h:"ARIA Safety Signal",b:"Amyloid-related imaging abnormalities (brain swelling/bleeding) are the class-wide safety concern limiting uptake. The drug that solves this wins the market."},
+      {k:"Next Catalyst",h:"Subcutaneous Dosing",b:"Leqembi's SC autoinjector BLA could transform access — current IV every-2-weeks at infusion centers limits real-world adoption beyond academic medical centers."}
+    ],
+    drugs:[
+      {name:"Leqembi",gen:"lecanemab-irmb",co:"Eisai / Biogen",phase:"Approved",mech:"Anti-amyloid-β protofibril mAb",enroll:1795,risk:"low",mom:88,readout:"SC formulation approval 2025",readoutYear:"2025",nct:"NCT03887455",desig:"Breakthrough Therapy",edge:"Only fully approved anti-amyloid. 27% slowing CDR-SB. SC BLA filed — home dosing is the commercial inflection.",insight:"Full FDA approval July 2023 (Clarity AD). Slowed decline 27% vs placebo. Eisai guiding $1B+ revenue 2026. SC autoinjector BLA under review — home dosing drives adoption beyond academic centers. First-mover advantage is real but not permanent."},
+      {name:"Donanemab",gen:"donanemab",co:"Eli Lilly",phase:"Approved",mech:"Anti-amyloid plaque mAb (N3pG epitope)",enroll:1736,risk:"low",mom:85,readout:"Combination trial initiation 2026",readoutYear:"2026",nct:"NCT04437901",desig:"Breakthrough Therapy",edge:"Finite treatment course — stops when plaques cleared. Only drug with defined treatment endpoint.",insight:"FDA approved July 2024 (TRAILBLAZER-ALZ 2). Game-changing differentiator: treatment STOPS once amyloid clears — the only finite-course anti-amyloid. Hugely meaningful to patients and payers. Lilly exploring combo with tau inhibitor for deeper efficacy."},
+      {name:"Remternetug",gen:"remternetug",co:"Eli Lilly",phase:"Phase III",mech:"Anti-amyloid mAb (monthly SC injection)",enroll:1200,risk:"medium",mom:72,readout:"Phase 3 data readout 2026",readoutYear:"2026",nct:"NCT05026866",desig:"Fast Track",edge:"Monthly SC home injection vs bi-weekly IV clinic. Access and convenience advantage if Phase 3 succeeds.",insight:"Next-gen subcutaneous monthly antibody. If Phase 3 hits, becomes go-to for newly diagnosed patients wanting home treatment. Could cannibalize IV market. Lilly's Alzheimer's portfolio breadth is unmatched."},
+      {name:"Trontinemab",gen:"trontinemab",co:"Roche",phase:"Phase II",mech:"Anti-amyloid + transferrin receptor targeting",enroll:242,risk:"medium",mom:61,readout:"Phase 2 readout 2025",readoutYear:"2025",nct:"NCT04639921",desig:"Breakthrough Therapy",edge:"Novel TfR1 brain delivery — faster plaque clearance at lower doses, potentially reducing ARIA risk.",insight:"Roche's differentiated approach: shuttles antibody across blood-brain barrier via transferrin receptor. Phase 2 shows faster plaque clearance at lower doses — potentially addressing the ARIA safety issue that limits current therapies. Entering late but with mechanistic differentiation."}
+    ]
+  },
+  {
+    id:"nsclc",name:"Non-Small Cell Lung Cancer",kicker:"Oncology · Thoracic",
+    mktSize:"$28B",mktPct:100,
+    desc:"The most common cancer globally, transformed by targeted therapies and immunotherapy. Resistance mechanisms always emerge — creating endless pipeline opportunity. The battle is about sequencing, combinations, and conquering resistance.",
+    winner:"AstraZeneca's osimertinib dominates EGFR-mutant NSCLC with best-in-class data. Amgen's tarlatamab is rewriting SCLC. The post-Tagrisso ADC space is the next major commercial battleground.",
+    winnerFlag:"AstraZeneca Leads EGFR",
+    insights:[
+      {k:"Biomarker Wars",h:"Genotype = Destiny",b:"NSCLC is now 8+ molecularly defined subtypes: EGFR, ALK, ROS1, KRAS G12C, MET, RET, NTRK, PD-L1. Each is a separate market with separate drugs and separate commercial dynamics."},
+      {k:"Key Trend",h:"Resistance Is The Game",b:"Every targeted therapy eventually fails via acquired resistance mutations. The pipeline increasingly focuses on post-resistance settings and combination strategies designed to delay resistance onset."},
+      {k:"Biggest Bet",h:"ADC Wave Incoming",b:"Antibody-drug conjugates (ADCs) are the hottest class in oncology. HER3-DXd and TROP2-targeting ADCs could become multi-billion dollar drugs in NSCLC alone — and the same payloads work across multiple tumor types."}
+    ],
+    drugs:[
+      {name:"Tagrisso",gen:"osimertinib",co:"AstraZeneca",phase:"Approved",mech:"3rd-gen EGFR tyrosine kinase inhibitor",enroll:994,risk:"low",mom:95,readout:"Ongoing label expansions",readoutYear:"2025",nct:"NCT02151981",desig:"Breakthrough Therapy",edge:"Dominant across EGFR+ NSCLC in 1L, adjuvant, and unresectable Stage III. LAURA trial HR 0.16 is extraordinary.",insight:"The gold standard. LAURA trial (NEJM 2024): HR 0.16 in unresectable Stage III — best hazard ratio seen in this setting. $5.7B revenue 2023. AZ keeps expanding indications methodically. Every EGFR drug is benchmarked against Tagrisso."},
+      {name:"Imdelltra",gen:"tarlatamab-dlle",co:"Amgen",phase:"Approved",mech:"Bispecific T-cell engager (DLL3 × CD3)",enroll:220,risk:"low",mom:90,readout:"DeLLphi-304 Phase 3 data 2025",readoutYear:"2025",nct:"NCT05060016",desig:"Breakthrough Therapy",edge:"First-in-class for ES-SCLC. DLL3 on 85% of SCLC tumors. ORR 40%, transforming a historically hopeless cancer.",insight:"Transforms ES-SCLC — historically treatment-resistant. ORR 40%, median OS 14.3 months in heavy pretreated. DeLLphi-304 Phase 3 data 2025 — converting accelerated to full approval and expanding to 1L. If positive, redefines standard of care."},
+      {name:"Lumakras",gen:"sotorasib",co:"Amgen",phase:"Approved",mech:"KRAS G12C covalent inhibitor",enroll:590,risk:"low",mom:75,readout:"Combination + next-gen data 2025",readoutYear:"2025",nct:"NCT03600883",desig:"Breakthrough Therapy",edge:"First approved KRAS inhibitor — cracked 40 years of 'undruggable.' KRAS G12C in ~13% of NSCLC.",insight:"Historic — first KRAS drug after 40 years of failure. Modest single-agent PFS benefit but combination with SOS1 inhibitor in trials to overcome adaptive resistance. Next value creation lives in combinations."},
+      {name:"Adagrasib",gen:"adagrasib",co:"Mirati / BMS",phase:"Approved",mech:"KRAS G12C irreversible inhibitor",enroll:116,risk:"low",mom:78,readout:"Combination expansion 2025",readoutYear:"2025",nct:"NCT03785249",desig:"Breakthrough Therapy",edge:"Superior CNS penetration vs sotorasib. Active in brain mets — critical since NSCLC CNS progression is frequent.",insight:"BMS acquired Mirati for $5.8B 2024. Wins vs sotorasib on CNS activity — crucial since brain mets are common and treatment-limiting in NSCLC. Combination with cetuximab approved for KRAS G12C CRC — expansion model applies to NSCLC."},
+      {name:"HER3-DXd",gen:"patritumab deruxtecan",co:"Daiichi / AstraZeneca",phase:"Phase III",mech:"HER3-targeting antibody-drug conjugate",enroll:840,risk:"low",mom:86,readout:"HERTHENA-Lung02 readout 2025",readoutYear:"2025",nct:"NCT05048797",desig:"Breakthrough Therapy",edge:"HER3 expressed broadly post-osimertinib. Could become standard of care in 2L+ EGFR+ NSCLC — massive underserved population.",insight:"Most anticipated NSCLC readout of 2025. Targets post-Tagrisso EGFR+ patients — the massive underserved post-resistance population. AZ paid $6.9B to co-develop. HERTHENA-Lung02 Phase 3 data = potential multi-billion dollar commercial inflection overnight."}
+    ]
+  },
+  {
+    id:"myeloma",name:"Multiple Myeloma",kicker:"Oncology · Hematology",
+    mktSize:"$18B",mktPct:64,
+    desc:"Plasma cell cancer with extraordinary therapeutic innovation — now a bispecific wars battlefield. BCMA and GPRC5D are the hottest targets, with 5+ companies racing to dominate relapsed/refractory and now front-line settings.",
+    winner:"J&J's teclistamab was first-to-market BCMA bispecific. Talquetamab (GPRC5D) opens a second front. Pfizer and Regeneron are closing fast with differentiated dosing strategies.",
+    winnerFlag:"J&J First To Market",
+    insights:[
+      {k:"The Target War",h:"BCMA vs GPRC5D",b:"BCMA bispecifics compete on the same antigen. GPRC5D offers a differentiated target — critical when BCMA resistance emerges. Combining both targets in one patient is the next frontier."},
+      {k:"Combination Era",h:"Triplets Are Coming",b:"Bispecifics moving into combinations with daratumumab and lenalidomide in earlier lines. First Phase 3 combination data will redefine standard of care and open massive new market opportunities."},
+      {k:"Key Risk",h:"CRS & Infections",b:"Cytokine release syndrome and opportunistic infections are class-wide concerns. Outpatient step-up dosing protocols and infection prophylaxis are key commercial differentiators."}
+    ],
+    drugs:[
+      {name:"Tecvayli",gen:"teclistamab",co:"Johnson & Johnson",phase:"Approved",mech:"Bispecific antibody (BCMA × CD3)",enroll:165,risk:"low",mom:84,readout:"MajesTEC-3 front-line data 2026",readoutYear:"2026",nct:"NCT04557098",desig:"Breakthrough Therapy",edge:"First approved BCMA bispecific globally. Building real-world evidence and front-line combination data ahead of competitors.",insight:"FDA approved Sept 2022 — first BCMA bispecific. 63% ORR in MajesTEC-1. MajesTEC-3 moving to earlier lines — if positive, expands from small 5L+ population to massive 2L+ market. J&J's dual bispecific portfolio is unmatched."},
+      {name:"Elranatamab",gen:"elranatamab",co:"Pfizer",phase:"Approved",mech:"Bispecific antibody (BCMA × CD3)",enroll:123,risk:"low",mom:80,readout:"MagnetisMM-9 combo data 2026",readoutYear:"2026",nct:"NCT04649359",desig:"Breakthrough Therapy",edge:"Monthly maintenance dosing post-induction — best long-term convenience. Pfizer combining with daratumumab for earlier lines.",insight:"FDA approved Aug 2023. 61% ORR in MagnetisMM-3. Q1W then monthly dosing is key differentiator for long-term treatment. MagnetisMM-9 with daratumumab could leapfrog J&J in earlier lines."},
+      {name:"Linvoseltamab",gen:"linvoseltamab",co:"Regeneron",phase:"Phase II",mech:"Bispecific antibody (BCMA × CD3)",enroll:282,risk:"medium",mom:74,readout:"BLA regulatory decision 2025",readoutYear:"2025",nct:"NCT03761108",desig:"Breakthrough Therapy",edge:"Numerically highest ORR in BCMA bispecific class at 71%. Every-4-week maintenance dosing is least frequent in class.",insight:"71% ORR in LINKER-MM1 — highest in class. Q4W maintenance = least frequent dosing. BLA accepted by FDA 2024. Late to market but ORR data and dosing convenience could carve meaningful share."},
+      {name:"Talquetamab",gen:"talquetamab",co:"Johnson & Johnson",phase:"Approved",mech:"Bispecific antibody (GPRC5D × CD3)",enroll:288,risk:"low",mom:87,readout:"Dual bispecific combo data 2025",readoutYear:"2025",nct:"NCT03399799",desig:"Breakthrough Therapy",edge:"Novel GPRC5D target — active after BCMA therapy. J&J now holds both BCMA and GPRC5D approvals — dominant dual portfolio.",insight:"FDA approved Aug 2023 — first GPRC5D bispecific. 73% ORR in MonumenTAL-1. GPRC5D critical: works post-BCMA exposure. RedirecTT-1 combining talquetamab + teclistamab (dual bispecific) could be transformative — no resistance pathway remains."},
+      {name:"Cevostamab",gen:"cevostamab",co:"Genentech / Roche",phase:"Phase II",mech:"Bispecific antibody (FcRH5 × CD3)",enroll:160,risk:"medium",mom:62,readout:"Phase 3 initiation 2025",readoutYear:"2025",nct:"NCT03275103",desig:"Breakthrough Therapy",edge:"Third distinct bispecific target (FcRH5) — works when both BCMA and GPRC5D have been used and failed.",insight:"53% ORR in CELESTIMO. Third bispecific target positions Roche as go-to when all other bispecifics have been used. In a market moving toward sequential bispecific therapy, a third target has durable commercial value."}
+    ]
+  },
+  {
+    id:"obesity",name:"Obesity & Metabolic",kicker:"Metabolic Disease · Endocrinology",
+    mktSize:"$130B",mktPct:100,
+    desc:"The hottest space in all of pharma. GLP-1 agonists have redefined obesity treatment. Every major pharma company is racing to compete with Novo and Lilly. The next battles: oral pills, next-gen mechanisms, and indication expansion.",
+    winner:"Novo Nordisk (Wegovy) and Eli Lilly (Zepbound) are the dominant duopoly. But Roche, Pfizer, Amgen, and AZ are sprinting. The oral pill race will define the next decade of the market.",
+    winnerFlag:"Novo + Lilly Duopoly",
+    insights:[
+      {k:"Scale",h:"$130B Market by 2030",b:"GLP-1 obesity drugs are projected to become the largest drug class in pharma history. Morgan Stanley estimates $130B by 2030. This is a macro event for the entire healthcare system."},
+      {k:"Next Frontier",h:"Oral vs Injectable",b:"First oral semaglutide approved for diabetes. Oral obesity formulations are the next gold rush — whoever cracks convenient, effective oral dosing at scale captures enormous incremental market share."},
+      {k:"Indication Expansion",h:"Beyond Weight Loss",b:"GLP-1s now in trials for T2D, heart failure, sleep apnea, NASH, CKD, addiction, and Alzheimer's. Each new indication is a multi-billion dollar opportunity stacked on top of the base obesity market."}
+    ],
+    drugs:[
+      {name:"Wegovy",gen:"semaglutide 2.4mg",co:"Novo Nordisk",phase:"Approved",mech:"GLP-1 receptor agonist (weekly SC injection)",enroll:1961,risk:"low",mom:96,readout:"CKD + addiction trials readout 2025",readoutYear:"2025",nct:"NCT03548935",desig:"Fast Track",edge:"15% weight loss. SELECT trial: 20% CV risk reduction — first weight loss drug with proven cardiovascular benefit.",insight:"Created the modern obesity market. SELECT (NEJM 2023): 20% MACE reduction transformed prescriber/payer perception from lifestyle drug to essential cardiovascular medicine. Novo running CKD, addiction, Alzheimer's trials — indication expansion machine."},
+      {name:"Zepbound",gen:"tirzepatide",co:"Eli Lilly",phase:"Approved",mech:"Dual GLP-1/GIP receptor agonist (weekly SC)",enroll:2539,risk:"low",mom:97,readout:"SURMOUNT-5 head-to-head data 2025",readoutYear:"2025",nct:"NCT04184622",desig:"Fast Track",edge:"22.5% weight loss — numerically best-in-class. OSA approved 2024. SURMOUNT-5 head-to-head vs Wegovy is the most watched obesity trial.",insight:"SURMOUNT-1: 22.5% weight loss — best in class. OSA approved 2024. SURMOUNT-5 direct head-to-head vs Wegovy is the most watched trial in obesity — positive data would be a landmark commercial catalyst. GIP dual agonism may preserve lean muscle mass."},
+      {name:"CagriSema",gen:"cagrilintide + semaglutide",co:"Novo Nordisk",phase:"Phase III",mech:"GLP-1 + amylin dual agonist",enroll:3400,risk:"low",mom:82,readout:"REDEFINE Phase 3 readout 2025",readoutYear:"2025",nct:"NCT05549232",desig:"Fast Track",edge:"~25% weight loss in Phase 2. Amylin mechanism additive to GLP-1 — may break the 25% weight loss ceiling.",insight:"REDEFINE Phase 3 ongoing. If CagriSema shows 25%+ weight loss, Novo maintains best-in-class vs tirzepatide. Amylin combination is mechanistically novel — different satiety pathway means potentially superior efficacy with a different side effect profile."},
+      {name:"Retatrutide",gen:"retatrutide",co:"Eli Lilly",phase:"Phase III",mech:"Triple GLP-1/GIP/glucagon receptor agonist",enroll:2100,risk:"low",mom:85,readout:"Phase 3 interim data 2026",readoutYear:"2026",nct:"NCT05929443",desig:"Fast Track",edge:"~24% weight loss Phase 2. Triple agonism adds glucagon receptor — increases energy expenditure beyond reduced caloric intake.",insight:"Lilly's next-gen triple agonist. Glucagon component increases metabolic rate — potential to reach surgical-level 30%+ weight loss. Phase 2: 24.2% dose-dependent loss. Lilly could have best injectable AND best oral — unmatched breadth."},
+      {name:"Orforglipron",gen:"orforglipron",co:"Eli Lilly",phase:"Phase III",mech:"Oral non-peptide GLP-1 agonist (once daily)",enroll:3000,risk:"medium",mom:88,readout:"ATTAIN-MAINTAIN readout 2025",readoutYear:"2025",nct:"NCT05557656",desig:"Fast Track",edge:"Once-daily oral pill — no injection. Removes #1 patient adoption barrier: needle aversion. Could open GLP-1 to majority who refuse injections.",insight:"Most commercially significant pipeline asset in obesity. Effective oral GLP-1 removes needle aversion — the single largest patient barrier. Phase 2: ~15% weight loss. ATTAIN-MAINTAIN Phase 3 ongoing. Opens GLP-1 to the majority of patients who refuse injection therapy."}
+    ]
+  },
+  {
+    id:"als",name:"ALS — Amyotrophic Lateral Sclerosis",kicker:"Neurology · Motor Neuron Disease",
+    mktSize:"$1.8B",mktPct:14,
+    desc:"ALS kills motor neurons, progressively paralyzing patients — most die within 2–5 years. Only 2–3 treatments exist, all with modest benefit. Recent genetic insights are finally creating druggable targets after decades of failure.",
+    winner:"No clear winner yet. Tofersen (Biogen) for SOD1-ALS is the only genetically-targeted approval. FUS and C9orf72 gene silencing represent the most credible next wave.",
+    winnerFlag:"High Unmet Need",
+    insights:[
+      {k:"The Biology",h:"Genetics Unlocking ALS",b:"~10% of ALS is familial with known mutations (SOD1, C9orf72, FUS, TDP-43). These subtypes are now druggable with ASOs and gene silencing. The 90% sporadic ALS remains the unsolved challenge."},
+      {k:"Regulatory Edge",h:"Accelerated Pathways",b:"ALS qualifies for Orphan Drug, Fast Track, and often Breakthrough designation. FDA accepts functional endpoints (ALSFRS-R) with smaller trials — reducing development risk vs other CNS indications."},
+      {k:"Key Risk",h:"Trial Design Challenge",b:"ALS progression is highly variable — making placebo-controlled trials complex. Platform trials with multiple arms and shared controls are emerging as a more efficient and ethical design approach."}
+    ],
+    drugs:[
+      {name:"Qalsody",gen:"tofersen",co:"Biogen",phase:"Approved",mech:"Antisense oligonucleotide — SOD1 gene silencing",enroll:108,risk:"low",mom:78,readout:"Confirmatory trial readout 2025",readoutYear:"2025",nct:"NCT02623699",desig:"Accelerated Approval",edge:"First genetically-targeted ALS therapy. Proof-of-concept for gene silencing in ALS — opens the door for FUS and C9orf72 programs.",insight:"FDA accelerated approval April 2023. Reduced SOD1 protein and NfL biomarker (marker of neurodegeneration). Confirmatory trial ongoing. Critically: proves gene silencing works in ALS — the platform validation that enables FUS and C9orf72 programs to advance with higher confidence."},
+      {name:"ION363",gen:"jacifusen",co:"Ionis / Biogen",phase:"Phase III",mech:"FUS gene silencing (antisense oligonucleotide)",enroll:90,risk:"medium",mom:80,readout:"Phase 3 readout 2026",readoutYear:"2026",nct:"NCT04768972",desig:"Orphan Drug",edge:"FUS-ALS is younger-onset and more aggressive. Compassionate use data in Jaci Hermstad was compelling — drove rapid development.",insight:"Developed at unprecedented speed after compassionate use in Jaci Hermstad showed clear slowing before her death. FUS-ALS affects patients ~35-40 years old and progresses rapidly. If Phase 3 positive, validates gene silencing platform broadly — and potentially other motor neuron diseases."},
+      {name:"ATLAS Trial",gen:"tofersen presymptomatic",co:"Biogen",phase:"Phase III",mech:"SOD1 silencing in presymptomatic carriers",enroll:150,risk:"medium",mom:71,readout:"ATLAS prevention data 2026",readoutYear:"2026",nct:"NCT04856982",desig:"Breakthrough Therapy",edge:"Treating SOD1 carriers BEFORE symptoms appear — prevention paradigm. If it works, can potentially prevent ALS entirely.",insight:"ATLAS trial — treating SOD1 mutation carriers presymptomatically. This is the prevention paradigm: if you silence the gene before neurons die, can you prevent ALS? Most exciting ALS concept in decades. Will define the future of genetic ALS treatment."},
+      {name:"AMX0035",gen:"PB/TUDCA next-gen",co:"Amylyx",phase:"Phase II",mech:"Mitochondrial + ER stress modulator",enroll:90,risk:"high",mom:38,readout:"Phase 2 data 2026",readoutYear:"2026",nct:"NCT05886010",desig:"Orphan Drug",edge:"Rebuilding after Relyvrio withdrawal. Underlying mitochondrial biology remains valid. New molecular approach.",insight:"Amylyx rebuilding after voluntary Relyvrio withdrawal (PHOENIX Phase 3 negative, Sept 2023). Biology — mitochondrial and ER stress as ALS drivers — remains credible. New molecular approach aims to address potency limitations. High risk given prior failure but different target."},
+      {name:"CNM-Au8",gen:"CNM-Au8",co:"Clene Nanomedicine",phase:"Phase II",mech:"Catalytic gold nanocrystals — neuroprotection",enroll:106,risk:"high",mom:45,readout:"RESCUE-ALS data 2025",readoutYear:"2025",nct:"NCT03815916",desig:"Orphan Drug",edge:"Novel mechanism — catalytic nanocrystals boost neuronal energy metabolism. Entirely new class if positive.",insight:"Highly novel — catalytic gold nanocrystals improve mitochondrial efficiency in motor neurons. RESCUE-ALS Phase 2 data 2025. Long shot but if positive would generate enormous scientific and commercial interest. High risk, high upside asymmetry — the kind of binary bet analysts watch carefully."}
+    ]
+  }
+];
+
+const PS = {"Phase I":{bg:"var(--ph1bg)",t:"var(--ph1t)"},"Phase II":{bg:"var(--ph2bg)",t:"var(--ph2t)"},"Phase III":{bg:"var(--ph3bg)",t:"var(--ph3t)"},"Approved":{bg:"var(--appbg)",t:"var(--appt)"}};
+function rC(r){return r==='low'?'#16a34a':r==='medium'?'#ca8a04':'#dc2626';}
+function mC(s){return s>=80?'#16a34a':s>=60?'#ca8a04':'#dc2626';}
+
+const allDrugs = DATA.flatMap(ind=>ind.drugs.map(d=>({...d,indName:ind.name,indId:ind.id})));
+document.getElementById('totalDrugs').textContent=allDrugs.length;
+document.getElementById('totalCos').textContent=[...new Set(allDrugs.map(d=>d.co))].length;
+document.getElementById('totalApp').textContent=allDrugs.filter(d=>d.phase==='Approved').length;
+document.getElementById('totalPh3').textContent=allDrugs.filter(d=>d.phase==='Phase III').length;
+
+// Market bars
+const maxP=Math.max(...DATA.map(i=>i.mktPct));
+document.getElementById('mbBars').innerHTML=DATA.map(ind=>`
+  <div class="mb-bar-item" onclick="switchTo('${ind.id}')">
+    <div class="mb-fill" style="width:0" data-w="${ind.mktPct/maxP*100}%"></div>
+    <div class="mb-name">${ind.name.split(' ')[0]}</div>
+    <div class="mb-size">${ind.mktSize}</div>
+    <div class="mb-year">${ind.mktYear||'est. 2030'}</div>
+  </div>`).join('');
+setTimeout(()=>document.querySelectorAll('.mb-fill').forEach(el=>el.style.width=el.dataset.w),200);
+
+// Nav
+let activeView=DATA[0].id;
+function switchTo(id){activeView=id;buildNav();renderView();}
+window.switchTo=switchTo;
+
+function buildNav(){
+  document.querySelectorAll('.nav-btn').forEach(b=>b.remove());
+  const tl=document.getElementById('tlBtn');
+  DATA.forEach(ind=>{
+    const b=document.createElement('button');
+    b.className='nav-btn'+(ind.id===activeView?' active':'');
+    b.dataset.id=ind.id;
+    b.innerHTML=`${ind.name} <span class="nav-count">${ind.drugs.length}</span>`;
+    b.onclick=()=>switchTo(ind.id);
+    document.getElementById('navStrip').insertBefore(b,tl);
+  });
+  tl.classList.toggle('active',activeView==='timeline');
+}
+
+document.getElementById('tlBtn').onclick=()=>{activeView='timeline';buildNav();renderView();};
+
+// Search
+const sInput=document.getElementById('searchInput');
+sInput.addEventListener('input',e=>{
+  const q=e.target.value.trim().toLowerCase();
+  const panel=document.getElementById('searchPanel');
+  if(q.length>1){
+    const hits=allDrugs.filter(d=>
+      d.name.toLowerCase().includes(q)||d.gen.toLowerCase().includes(q)||
+      d.co.toLowerCase().includes(q)||d.mech.toLowerCase().includes(q)||
+      d.indName.toLowerCase().includes(q)
+    );
+    document.getElementById('searchCount').textContent=hits.length?`${hits.length} result${hits.length>1?'s':''}`:' No results';
+    document.getElementById('searchPH').textContent=`Search Results for "${e.target.value}"`;
+    document.getElementById('searchResults').innerHTML=hits.length?hits.map(d=>{
+      const ps=PS[d.phase]||{bg:'#f3f4f6',t:'#374151'};
+      return `<div class="search-hit" onclick="openModal('${d.indId}','${d.name}')">
+        <div><div class="sh-name">${d.name}</div><div class="sh-co">${d.co}</div></div>
+        <div><span class="phase-tag" style="background:${ps.bg};color:${ps.t}">${d.phase}</span></div>
+        <div class="sh-mech">${d.mech}</div>
+        <div class="sh-ind">${d.indName}</div>
+      </div>`;
+    }).join(''):`<div style="padding:1.5rem;font-size:0.73rem;color:var(--muted)">No drugs match "${e.target.value}"</div>`;
+    panel.classList.add('visible');
+  } else {
+    panel.classList.remove('visible');
+    document.getElementById('searchCount').textContent='';
+  }
+});
+document.getElementById('searchClear').onclick=()=>{
+  sInput.value='';
+  document.getElementById('searchPanel').classList.remove('visible');
+  document.getElementById('searchCount').textContent='';
+};
+
+// Render indications
+document.getElementById('indsWrap').innerHTML=DATA.map(ind=>{
+  const app=ind.drugs.filter(d=>d.phase==='Approved').length;
+  return `<div class="indication" id="ind-${ind.id}">
+    <div class="ind-header">
+      <div>
+        <div class="ind-kicker">${ind.kicker}</div>
+        <div class="ind-name">${ind.name}</div>
+        <div class="ind-desc">${ind.desc}</div>
+      </div>
+      <div class="ind-stats">
+        <div><div class="istat-num">${ind.drugs.length}</div><div class="istat-lbl">Competitors</div></div>
+        <div><div class="istat-num">${app}</div><div class="istat-lbl">Approved</div></div>
+        <div><div class="istat-num">${ind.mktSize}</div><div class="istat-lbl">Mkt 2030</div></div>
+      </div>
+    </div>
+    <div class="winner-banner">
+      <div class="winner-lbl">Competitive Read</div>
+      <div class="winner-txt">${ind.winner}</div>
+      <div class="winner-flag">${ind.winnerFlag}</div>
+    </div>
+    <div class="battlefield">
+      <div class="bf-head">
+        <div class="bh">Drug · Company</div>
+        <div class="bh">Mechanism</div>
+        <div class="bh">Phase</div>
+        <div class="bh">Enrollment</div>
+        <div class="bh">Next Catalyst</div>
+        <div class="bh">Risk</div>
+      </div>
+      ${ind.drugs.map((d,i)=>{
+        const ps=PS[d.phase]||{bg:'#f3f4f6',t:'#374151'};
+        return `<div class="bf-row" style="animation-delay:${i*0.055}s" onclick="openModal('${ind.id}','${d.name}')">
+          <div><div class="drug-brand">${d.name}</div><div class="drug-gen">${d.gen}</div><div class="drug-co">${d.co}</div></div>
+          <div class="mech-cell">${d.mech}</div>
+          <div><span class="phase-tag" style="background:${ps.bg};color:${ps.t}">${d.phase}</span></div>
+          <div><div class="enroll-num">${d.enroll.toLocaleString()}</div><div class="enroll-sub">patients</div></div>
+          <div class="catalyst-cell">${d.readout||'—'}</div>
+          <div><span class="risk-tag" style="color:${rC(d.risk)}"><span class="risk-pip" style="background:${rC(d.risk)}"></span>${d.risk.charAt(0).toUpperCase()+d.risk.slice(1)}</span></div>
+        </div>`;
+      }).join('')}
+    </div>
+    <div class="insight-box">
+      ${ind.insights.map(ins=>`
+        <div class="insight-item">
+          <div class="ins-kicker">${ins.k}</div>
+          <div class="ins-head">${ins.h}</div>
+          <div class="ins-body">${ins.b}</div>
+        </div>`).join('')}
+    </div>
+  </div>`;
+}).join('');
+
+// Timeline
+function buildTimeline(){
+  const years=['2024','2025','2026','2027'];
+  document.getElementById('tlContent').innerHTML=`
+    <div class="tl-year-strip">
+      <div class="tl-yh" style="border-right:1px solid var(--border2)">Drug</div>
+      ${years.map(y=>`<div class="tl-yh${y==='2025'?' now':''}">${y}${y==='2025'?' ← Now':''}</div>`).join('')}
+    </div>
+    <div class="tl-rows">
+      ${allDrugs.filter(d=>d.readout).map(d=>{
+        const ps=PS[d.phase]||{bg:'#f3f4f6',t:'#374151'};
+        const yr=d.readoutYear||'2026';
+        return `<div class="tl-row">
+          <div class="tl-row-lbl"><div class="tl-dname">${d.name}</div><div class="tl-dind">${d.indName.split(' ')[0]}</div></div>
+          ${years.map(y=>`<div class="tl-cell">
+            ${y===yr?`<div>
+              <div class="tl-chip" style="background:${ps.bg};color:${ps.t};border:1px solid ${ps.t}22" onclick="openModal('${d.indId}','${d.name}')">${d.phase}</div>
+              <div class="tl-catalyst-txt">${d.readout}</div>
+            </div>`:''}
+          </div>`).join('')}
+        </div>`;
+      }).join('')}
+    </div>`;
+}
+
+function renderView(){
+  document.querySelectorAll('.indication').forEach(el=>el.classList.remove('active'));
+  document.getElementById('tlSection').classList.remove('active');
+  document.getElementById('mktBanner').style.display=activeView==='timeline'?'none':'flex';
+  if(activeView==='timeline'){document.getElementById('tlSection').classList.add('active');buildTimeline();}
+  else{const el=document.getElementById('ind-'+activeView);if(el)el.classList.add('active');}
+}
+
+// Modal
+function openModal(indId,drugName){
+  const ind=DATA.find(i=>i.id===indId);
+  if(!ind) return;
+  const d=ind.drugs.find(x=>x.name===drugName);
+  if(!d) return;
+  const ps=PS[d.phase]||{bg:'#f3f4f6',t:'#374151'};
+  const mc=mC(d.mom);
+  document.getElementById('modalTop').innerHTML=`
+    <div class="modal-kicker">${ind.name} · ${d.co}</div>
+    <div class="modal-name">${d.name}</div>
+    <div class="modal-gen">${d.gen}</div>`;
+  document.getElementById('modalBody').innerHTML=`
+    <div class="modal-grid">
+      <div><div class="mg-lbl">Phase</div><div class="mg-val"><span class="phase-tag" style="background:${ps.bg};color:${ps.t}">${d.phase}</span></div></div>
+      <div><div class="mg-lbl">Designation</div><div class="mg-val">${d.desig}</div></div>
+      <div><div class="mg-lbl">Mechanism</div><div class="mg-val">${d.mech}</div></div>
+      <div><div class="mg-lbl">Enrollment</div><div class="mg-val">${d.enroll.toLocaleString()} patients</div></div>
+      <div><div class="mg-lbl">Next Catalyst</div><div class="mg-val">${d.readout||'—'}</div></div>
+      <div><div class="mg-lbl">Risk Signal</div><div class="mg-val" style="color:${rC(d.risk)}">${d.risk.charAt(0).toUpperCase()+d.risk.slice(1)}</div></div>
+    </div>
+    <div class="momentum-block">
+      <div><div class="mom-score" style="color:${mc}">${d.mom}</div><div class="mom-lbl">Momentum Score</div></div>
+      <div style="flex:1">
+        <div class="mom-bar-out"><div class="mom-bar-in" style="width:${d.mom}%;background:${mc}"></div></div>
+        <div class="mom-breakdown">Composite of: phase progress · regulatory designation · trial size · competitive position · data strength · readout proximity</div>
+      </div>
+    </div>
+    <div class="modal-insight"><strong>Competitive Analysis —</strong> ${d.insight}</div>
+    <div class="modal-edge"><strong>Competitive Edge:</strong> ${d.edge}</div>
+    <div class="modal-nct">Source: <a href="https://clinicaltrials.gov/study/${d.nct}" target="_blank">clinicaltrials.gov/study/${d.nct}</a></div>`;
+  document.getElementById('overlay').classList.add('open');
+}
+window.openModal=openModal;
+
+document.getElementById('modalClose').onclick=()=>document.getElementById('overlay').classList.remove('open');
+document.getElementById('overlay').addEventListener('click',e=>{if(e.target===document.getElementById('overlay'))document.getElementById('overlay').classList.remove('open');});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('overlay').classList.remove('open');});
+
+buildNav();
+renderView();
+</script>
+</body>
+</html>
