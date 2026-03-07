@@ -2,7 +2,8 @@
 
 > *Five of the most contested indications in drug development. 24 real drug candidates. One dashboard that shows who is winning, who is losing, and what it means commercially.*
 
-[![Live App](https://img.shields.io/badge/▲%20LIVE%20APP-View%20Dashboard-black?style=for-the-badge)](https://lincyrebello.github.io/pharma-competitive-analysis/)
+
+[![Live App](https://img.shields.io/badge/▲%20LIVE%20APP-View%20Dashboard-black?style=for-the-badge)](https://lincyrebello.github.io/Pharma-competitive-analysis/)
 [![Status](https://img.shields.io/badge/STATUS-ACTIVE-brightgreen?style=for-the-badge)]()
 [![Data](https://img.shields.io/badge/DATA-CLINICALTRIALS.GOV-c0392b?style=for-the-badge)]()
 [![Python](https://img.shields.io/badge/PYTHON-ETL%20PIPELINE-3776AB?style=for-the-badge)]()
