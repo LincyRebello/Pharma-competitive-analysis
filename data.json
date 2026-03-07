@@ -1,0 +1,820 @@
+{
+  "meta": {
+    "last_updated": "2026-03-07",
+    "total_drugs": 24,
+    "data_source": "ClinicalTrials.gov API v2 + curated analyst content"
+  },
+  "summary": {
+    "top_companies": {
+      "Eli Lilly": 5,
+      "Amgen": 2,
+      "Biogen": 2,
+      "Johnson & Johnson": 2,
+      "Novo Nordisk": 2
+    },
+    "phase_distribution": {
+      "Approved": 12,
+      "N/A": 5,
+      "Phase III": 4,
+      "Phase I": 2,
+      "Phase II": 1
+    },
+    "avg_momentum_by_indication": {
+      "als": 65.6,
+      "alzheimers": 78.0,
+      "myeloma": 78.4,
+      "nsclc": 97.6,
+      "obesity": 58.8
+    },
+    "designation_distribution": {
+      "Breakthrough Therapy": 14,
+      "Fast Track": 6,
+      "Orphan Drug": 3,
+      "Accelerated Approval": 1
+    },
+    "upcoming_readouts": [
+      {
+        "name": "Leqembi",
+        "indication": "alzheimers",
+        "readout": "SC formulation approval 2025",
+        "momentum": 100
+      },
+      {
+        "name": "Donanemab",
+        "indication": "alzheimers",
+        "readout": "Combination trial initiation 2026",
+        "momentum": 100
+      },
+      {
+        "name": "Imdelltra",
+        "indication": "nsclc",
+        "readout": "DeLLphi-304 Phase 3 data 2025",
+        "momentum": 100
+      },
+      {
+        "name": "Tagrisso",
+        "indication": "nsclc",
+        "readout": "Ongoing label expansions",
+        "momentum": 100
+      },
+      {
+        "name": "Lumakras",
+        "indication": "nsclc",
+        "readout": "Combination + next-gen data 2025",
+        "momentum": 100
+      },
+      {
+        "name": "Adagrasib",
+        "indication": "nsclc",
+        "readout": "Combination expansion data 2025",
+        "momentum": 100
+      },
+      {
+        "name": "Elranatamab",
+        "indication": "myeloma",
+        "readout": "MagnetisMM-9 combination data 2026",
+        "momentum": 100
+      },
+      {
+        "name": "Tecvayli",
+        "indication": "myeloma",
+        "readout": "MajesTEC-3 front-line data 2026",
+        "momentum": 100
+      },
+      {
+        "name": "Talquetamab",
+        "indication": "myeloma",
+        "readout": "Dual bispecific combination data 2025",
+        "momentum": 100
+      },
+      {
+        "name": "Qalsody",
+        "indication": "als",
+        "readout": "Confirmatory trial readout 2025",
+        "momentum": 97
+      },
+      {
+        "name": "Zepbound",
+        "indication": "obesity",
+        "readout": "SURMOUNT-5 head-to-head vs Wegovy 2025",
+        "momentum": 93
+      },
+      {
+        "name": "Wegovy",
+        "indication": "obesity",
+        "readout": "CKD + addiction trials readout 2025",
+        "momentum": 93
+      },
+      {
+        "name": "ATLAS Trial",
+        "indication": "als",
+        "readout": "ATLAS prevention data 2026",
+        "momentum": 88
+      },
+      {
+        "name": "HER3-DXd",
+        "indication": "nsclc",
+        "readout": "HERTHENA-Lung02 Phase 3 readout 2025",
+        "momentum": 88
+      },
+      {
+        "name": "Remternetug",
+        "indication": "alzheimers",
+        "readout": "Phase 3 data readout 2026",
+        "momentum": 69
+      },
+      {
+        "name": "ION363",
+        "indication": "als",
+        "readout": "Phase 3 readout 2026",
+        "momentum": 66
+      },
+      {
+        "name": "Cevostamab",
+        "indication": "myeloma",
+        "readout": "Phase 3 initiation 2025",
+        "momentum": 46
+      },
+      {
+        "name": "Linvoseltamab",
+        "indication": "myeloma",
+        "readout": "BLA regulatory decision 2025",
+        "momentum": 46
+      },
+      {
+        "name": "CNM-Au8",
+        "indication": "als",
+        "readout": "RESCUE-ALS Phase 2 data 2025",
+        "momentum": 44
+      },
+      {
+        "name": "Trontinemab",
+        "indication": "alzheimers",
+        "readout": "Phase 2 readout 2025",
+        "momentum": 43
+      },
+      {
+        "name": "Orforglipron",
+        "indication": "obesity",
+        "readout": "ATTAIN-MAINTAIN Phase 3 readout 2025",
+        "momentum": 36
+      },
+      {
+        "name": "Retatrutide",
+        "indication": "obesity",
+        "readout": "Phase 3 interim data 2026",
+        "momentum": 36
+      },
+      {
+        "name": "CagriSema",
+        "indication": "obesity",
+        "readout": "REDEFINE Phase 3 readout 2025",
+        "momentum": 36
+      },
+      {
+        "name": "AMX0035",
+        "indication": "als",
+        "readout": "Phase 2 data 2026",
+        "momentum": 33
+      }
+    ],
+    "total_drugs": 24,
+    "total_approved": 12,
+    "total_phase3": 4,
+    "total_companies": 16
+  },
+  "indications": {
+    "alzheimers": {
+      "name": "Alzheimer's Disease",
+      "kicker": "Neurology \u00b7 Memory & Cognition",
+      "market_size": "$13B",
+      "market_pct": 45,
+      "desc": "The most expensive disease in the US \u2014 $360B annual cost. Anti-amyloid therapies have finally broken through after decades of failure. The race is now who can make treatment safer, more accessible, and effective earlier.",
+      "winner": "Leqembi (Eisai/Biogen) holds first-mover advantage as the only fully approved anti-amyloid therapy, but donanemab and next-gen SC formulations are intensifying competition.",
+      "winner_flag": "First Mover Advantage",
+      "insights": [
+        {
+          "k": "Market Size",
+          "h": "$13B+ by 2030",
+          "b": "Even modest penetration \u2014 limited today by IV infusion logistics \u2014 represents billions for early movers."
+        },
+        {
+          "k": "Key Risk",
+          "h": "ARIA Safety Signal",
+          "b": "Amyloid-related imaging abnormalities are the class-wide safety concern limiting uptake. The drug that solves this wins the market."
+        },
+        {
+          "k": "Next Catalyst",
+          "h": "Subcutaneous Dosing",
+          "b": "Leqembi's SC autoinjector BLA could transform access \u2014 current IV every-2-weeks at infusion centers limits real-world adoption."
+        }
+      ],
+      "analysis": {
+        "total_drugs": 4,
+        "approved_count": 2,
+        "phase3_count": 1,
+        "phase2_count": 0,
+        "avg_momentum": 78.0,
+        "top_momentum_drug": "Leqembi",
+        "total_enrollment": 14935,
+        "low_risk_count": 2,
+        "companies": 3,
+        "near_term_readouts": 4
+      },
+      "drugs": [
+        {
+          "nct": "NCT03887455",
+          "name": "Leqembi",
+          "generic": "lecanemab-irmb",
+          "company": "Eisai / Biogen",
+          "indication": "alzheimers",
+          "phase": "Approved",
+          "enrollment": 1906,
+          "api_status": "ACTIVE_NOT_RECRUITING",
+          "risk": "low",
+          "momentum": 100,
+          "mechanism": "Anti-amyloid-\u03b2 protofibril monoclonal antibody",
+          "desig": "Breakthrough Therapy",
+          "readout": "SC formulation approval 2025",
+          "readout_year": 2025,
+          "edge": "Only fully approved anti-amyloid. 27% slowing CDR-SB. SC BLA filed for home dosing.",
+          "insight": "Full FDA approval July 2023. Slowed decline 27% vs placebo. SC autoinjector BLA under review \u2014 home dosing is the commercial inflection that drives adoption beyond academic centers."
+        },
+        {
+          "nct": "NCT04437901",
+          "name": "Donanemab",
+          "generic": "donanemab",
+          "company": "Eli Lilly",
+          "indication": "alzheimers",
+          "phase": "Approved",
+          "enrollment": 10000,
+          "api_status": "UNKNOWN",
+          "risk": "low",
+          "momentum": 100,
+          "mechanism": "Anti-amyloid plaque mAb (N3pG epitope)",
+          "desig": "Breakthrough Therapy",
+          "readout": "Combination trial initiation 2026",
+          "readout_year": 2026,
+          "edge": "Finite treatment course \u2014 stops when plaques cleared. Only drug with defined treatment endpoint.",
+          "insight": "FDA approved July 2024. Game-changing differentiator: treatment STOPS once amyloid clears. Only finite-course anti-amyloid. Lilly exploring combination with tau inhibitor for deeper efficacy."
+        },
+        {
+          "nct": "NCT05026866",
+          "name": "Remternetug",
+          "generic": "remternetug",
+          "company": "Eli Lilly",
+          "indication": "alzheimers",
+          "phase": "Phase III",
+          "enrollment": 2996,
+          "api_status": "ACTIVE_NOT_RECRUITING",
+          "risk": "medium",
+          "momentum": 69,
+          "mechanism": "Anti-amyloid mAb (monthly subcutaneous injection)",
+          "desig": "Fast Track",
+          "readout": "Phase 3 data readout 2026",
+          "readout_year": 2026,
+          "edge": "Monthly SC home injection vs bi-weekly IV clinic. Access and convenience advantage if Phase 3 succeeds.",
+          "insight": "Next-gen subcutaneous monthly antibody. If Phase 3 hits, becomes go-to for newly diagnosed patients wanting home treatment. Could cannibalize IV market significantly."
+        },
+        {
+          "nct": "NCT04639921",
+          "name": "Trontinemab",
+          "generic": "trontinemab",
+          "company": "Roche",
+          "indication": "alzheimers",
+          "phase": "N/A",
+          "enrollment": 33,
+          "api_status": "UNKNOWN",
+          "risk": "high",
+          "momentum": 43,
+          "mechanism": "Anti-amyloid mAb + transferrin receptor brain delivery",
+          "desig": "Breakthrough Therapy",
+          "readout": "Phase 2 readout 2025",
+          "readout_year": 2025,
+          "edge": "Novel TfR1 brain delivery \u2014 faster plaque clearance at lower doses, potentially reducing ARIA risk.",
+          "insight": "Roche's differentiated approach shuttles antibody across blood-brain barrier via transferrin receptor. Phase 2 shows faster plaque clearance at lower doses \u2014 potentially addressing ARIA safety concern limiting current therapies."
+        }
+      ]
+    },
+    "nsclc": {
+      "name": "Non-Small Cell Lung Cancer",
+      "kicker": "Oncology \u00b7 Thoracic",
+      "market_size": "$28B",
+      "market_pct": 100,
+      "desc": "The most common cancer globally, transformed by targeted therapies and immunotherapy. Resistance mechanisms always emerge \u2014 creating endless pipeline opportunity.",
+      "winner": "AstraZeneca's osimertinib dominates EGFR-mutant NSCLC. Amgen's tarlatamab is rewriting SCLC. The post-Tagrisso ADC space is the next major commercial battleground.",
+      "winner_flag": "AstraZeneca Leads EGFR",
+      "insights": [
+        {
+          "k": "Biomarker Wars",
+          "h": "Genotype = Destiny",
+          "b": "NSCLC is now 8+ molecularly defined subtypes. Each is a separate market with separate drugs and separate commercial dynamics."
+        },
+        {
+          "k": "Key Trend",
+          "h": "Resistance Is The Game",
+          "b": "Every targeted therapy eventually fails via acquired resistance. The pipeline focuses increasingly on post-resistance settings and combination strategies."
+        },
+        {
+          "k": "Biggest Bet",
+          "h": "ADC Wave Incoming",
+          "b": "Antibody-drug conjugates are the hottest class in oncology. HER3-DXd and TROP2-targeting ADCs could become multi-billion dollar drugs in NSCLC alone."
+        }
+      ],
+      "analysis": {
+        "total_drugs": 5,
+        "approved_count": 4,
+        "phase3_count": 1,
+        "phase2_count": 0,
+        "avg_momentum": 97.6,
+        "top_momentum_drug": "Tagrisso",
+        "total_enrollment": 2541,
+        "low_risk_count": 5,
+        "companies": 4,
+        "near_term_readouts": 5
+      },
+      "drugs": [
+        {
+          "nct": "NCT02151981",
+          "name": "Tagrisso",
+          "generic": "osimertinib",
+          "company": "AstraZeneca",
+          "indication": "nsclc",
+          "phase": "Approved",
+          "enrollment": 421,
+          "api_status": "COMPLETED",
+          "risk": "low",
+          "momentum": 100,
+          "mechanism": "3rd-generation EGFR tyrosine kinase inhibitor",
+          "desig": "Breakthrough Therapy",
+          "readout": "Ongoing label expansions",
+          "readout_year": 2025,
+          "edge": "Dominant across EGFR+ NSCLC: 1L, adjuvant, unresectable Stage III. LAURA trial HR 0.16.",
+          "insight": "The gold standard. LAURA trial (NEJM 2024): HR 0.16 in unresectable Stage III \u2014 best hazard ratio in this setting. $5.7B revenue 2023. Every EGFR drug benchmarked against Tagrisso."
+        },
+        {
+          "nct": "NCT05060016",
+          "name": "Imdelltra",
+          "generic": "tarlatamab-dlle",
+          "company": "Amgen",
+          "indication": "nsclc",
+          "phase": "Approved",
+          "enrollment": 222,
+          "api_status": "ACTIVE_NOT_RECRUITING",
+          "risk": "low",
+          "momentum": 100,
+          "mechanism": "Bispecific T-cell engager (DLL3 \u00d7 CD3)",
+          "desig": "Breakthrough Therapy",
+          "readout": "DeLLphi-304 Phase 3 data 2025",
+          "readout_year": 2025,
+          "edge": "First-in-class ES-SCLC. DLL3 on 85% of SCLC tumors. ORR 40% in pretreated patients.",
+          "insight": "Transforms ES-SCLC \u2014 historically treatment-resistant. ORR 40%, OS 14.3 months in heavy pretreated. DeLLphi-304 Phase 3 data 2025 could redefine standard of care in 1L."
+        },
+        {
+          "nct": "NCT03600883",
+          "name": "Lumakras",
+          "generic": "sotorasib",
+          "company": "Amgen",
+          "indication": "nsclc",
+          "phase": "Approved",
+          "enrollment": 713,
+          "api_status": "ACTIVE_NOT_RECRUITING",
+          "risk": "low",
+          "momentum": 100,
+          "mechanism": "KRAS G12C covalent inhibitor",
+          "desig": "Breakthrough Therapy",
+          "readout": "Combination + next-gen data 2025",
+          "readout_year": 2025,
+          "edge": "First approved KRAS inhibitor \u2014 cracked 40 years of 'undruggable.' KRAS G12C in ~13% NSCLC.",
+          "insight": "Historic \u2014 first KRAS drug after 40 years of failure. Combination with SOS1 inhibitor in trials to overcome adaptive resistance. Next value creation lives in combinations."
+        },
+        {
+          "nct": "NCT03785249",
+          "name": "Adagrasib",
+          "generic": "adagrasib",
+          "company": "Mirati / BMS",
+          "indication": "nsclc",
+          "phase": "Approved",
+          "enrollment": 731,
+          "api_status": "ACTIVE_NOT_RECRUITING",
+          "risk": "low",
+          "momentum": 100,
+          "mechanism": "KRAS G12C irreversible covalent inhibitor",
+          "desig": "Breakthrough Therapy",
+          "readout": "Combination expansion data 2025",
+          "readout_year": 2025,
+          "edge": "Superior CNS penetration vs sotorasib. Active in brain mets \u2014 critical in NSCLC where CNS progression is frequent.",
+          "insight": "BMS acquired Mirati for $5.8B 2024. Wins vs sotorasib on CNS activity. Combination with cetuximab approved for KRAS G12C CRC \u2014 expansion model applies to NSCLC."
+        },
+        {
+          "nct": "NCT05048797",
+          "name": "HER3-DXd",
+          "generic": "patritumab deruxtecan",
+          "company": "Daiichi / AstraZeneca",
+          "indication": "nsclc",
+          "phase": "Phase III",
+          "enrollment": 454,
+          "api_status": "ACTIVE_NOT_RECRUITING",
+          "risk": "low",
+          "momentum": 88,
+          "mechanism": "HER3-targeting antibody-drug conjugate (ADC)",
+          "desig": "Breakthrough Therapy",
+          "readout": "HERTHENA-Lung02 Phase 3 readout 2025",
+          "readout_year": 2025,
+          "edge": "HER3 expressed broadly post-osimertinib. Could become standard of care in 2L+ EGFR+ NSCLC.",
+          "insight": "Most anticipated NSCLC readout of 2025. Targets post-Tagrisso EGFR+ patients \u2014 massive underserved population. AZ paid $6.9B to co-develop. HERTHENA-Lung02 data = potential multi-billion inflection overnight."
+        }
+      ]
+    },
+    "myeloma": {
+      "name": "Multiple Myeloma",
+      "kicker": "Oncology \u00b7 Hematology",
+      "market_size": "$18B",
+      "market_pct": 64,
+      "desc": "Plasma cell cancer with extraordinary therapeutic innovation \u2014 now a bispecific wars battlefield. BCMA and GPRC5D are the hottest targets, with 5+ companies racing to dominate.",
+      "winner": "J&J's teclistamab was first-to-market BCMA bispecific. Talquetamab (GPRC5D) opens a second front. Pfizer and Regeneron are closing fast.",
+      "winner_flag": "J&J First To Market",
+      "insights": [
+        {
+          "k": "The Target War",
+          "h": "BCMA vs GPRC5D",
+          "b": "BCMA bispecifics compete on the same antigen. GPRC5D offers a differentiated target \u2014 critical when BCMA resistance emerges."
+        },
+        {
+          "k": "Combination Era",
+          "h": "Triplets Are Coming",
+          "b": "Bispecifics moving into combinations with daratumumab and lenalidomide in earlier lines. First Phase 3 combination data will redefine standard of care."
+        },
+        {
+          "k": "Key Risk",
+          "h": "CRS & Infections",
+          "b": "Cytokine release syndrome and opportunistic infections are class-wide concerns. Outpatient step-up dosing protocols are key commercial differentiators."
+        }
+      ],
+      "analysis": {
+        "total_drugs": 5,
+        "approved_count": 3,
+        "phase3_count": 0,
+        "phase2_count": 0,
+        "avg_momentum": 78.4,
+        "top_momentum_drug": "Tecvayli",
+        "total_enrollment": 1402,
+        "low_risk_count": 3,
+        "companies": 4,
+        "near_term_readouts": 5
+      },
+      "drugs": [
+        {
+          "nct": "NCT04557098",
+          "name": "Tecvayli",
+          "generic": "teclistamab",
+          "company": "Johnson & Johnson",
+          "indication": "myeloma",
+          "phase": "Approved",
+          "enrollment": 194,
+          "api_status": "ACTIVE_NOT_RECRUITING",
+          "risk": "low",
+          "momentum": 100,
+          "mechanism": "Bispecific antibody (BCMA \u00d7 CD3)",
+          "desig": "Breakthrough Therapy",
+          "readout": "MajesTEC-3 front-line data 2026",
+          "readout_year": 2026,
+          "edge": "First approved BCMA bispecific globally. Real-world evidence and front-line combination data building.",
+          "insight": "FDA approved Sept 2022 \u2014 first BCMA bispecific. 63% ORR in MajesTEC-1. Moving to earlier lines \u2014 if positive, expands from 5L+ to massive 2L+ market."
+        },
+        {
+          "nct": "NCT04649359",
+          "name": "Elranatamab",
+          "generic": "elranatamab",
+          "company": "Pfizer",
+          "indication": "myeloma",
+          "phase": "Approved",
+          "enrollment": 187,
+          "api_status": "ACTIVE_NOT_RECRUITING",
+          "risk": "low",
+          "momentum": 100,
+          "mechanism": "Bispecific antibody (BCMA \u00d7 CD3)",
+          "desig": "Breakthrough Therapy",
+          "readout": "MagnetisMM-9 combination data 2026",
+          "readout_year": 2026,
+          "edge": "Monthly maintenance dosing post-induction \u2014 best long-term convenience. Pfizer combining with daratumumab.",
+          "insight": "FDA approved Aug 2023. 61% ORR. Q1W then monthly dosing is the key differentiator for long-term treatment. MagnetisMM-9 with daratumumab could leapfrog J&J in earlier lines."
+        },
+        {
+          "nct": "NCT03761108",
+          "name": "Linvoseltamab",
+          "generic": "linvoseltamab",
+          "company": "Regeneron",
+          "indication": "myeloma",
+          "phase": "Phase I",
+          "enrollment": 387,
+          "api_status": "RECRUITING",
+          "risk": "high",
+          "momentum": 46,
+          "mechanism": "Bispecific antibody (BCMA \u00d7 CD3)",
+          "desig": "Breakthrough Therapy",
+          "readout": "BLA regulatory decision 2025",
+          "readout_year": 2025,
+          "edge": "Numerically highest ORR in BCMA bispecific class at 71%. Every-4-week maintenance dosing.",
+          "insight": "71% ORR in LINKER-MM1 \u2014 highest in class. Q4W maintenance = least frequent dosing. BLA accepted 2024. Late to market but ORR data and convenience could carve meaningful share."
+        },
+        {
+          "nct": "NCT03399799",
+          "name": "Talquetamab",
+          "generic": "talquetamab",
+          "company": "Johnson & Johnson",
+          "indication": "myeloma",
+          "phase": "Approved",
+          "enrollment": 279,
+          "api_status": "ACTIVE_NOT_RECRUITING",
+          "risk": "low",
+          "momentum": 100,
+          "mechanism": "Bispecific antibody (GPRC5D \u00d7 CD3)",
+          "desig": "Breakthrough Therapy",
+          "readout": "Dual bispecific combination data 2025",
+          "readout_year": 2025,
+          "edge": "Novel GPRC5D target \u2014 active after BCMA therapy failure. J&J holds both BCMA and GPRC5D approvals.",
+          "insight": "FDA approved Aug 2023 \u2014 first GPRC5D bispecific. 73% ORR. RedirecTT-1 combining talquetamab + teclistamab \u2014 dual bispecific could be transformative with no remaining resistance pathway."
+        },
+        {
+          "nct": "NCT03275103",
+          "name": "Cevostamab",
+          "generic": "cevostamab",
+          "company": "Genentech / Roche",
+          "indication": "myeloma",
+          "phase": "Phase I",
+          "enrollment": 355,
+          "api_status": "COMPLETED",
+          "risk": "high",
+          "momentum": 46,
+          "mechanism": "Bispecific antibody (FcRH5 \u00d7 CD3)",
+          "desig": "Breakthrough Therapy",
+          "readout": "Phase 3 initiation 2025",
+          "readout_year": 2025,
+          "edge": "Third distinct bispecific target (FcRH5) \u2014 works when both BCMA and GPRC5D have been used and failed.",
+          "insight": "53% ORR in CELESTIMO. Third bispecific target positions Roche as go-to when all others have been used. In a market moving toward sequential bispecific therapy, a third target has durable commercial value."
+        }
+      ]
+    },
+    "obesity": {
+      "name": "Obesity & Metabolic",
+      "kicker": "Metabolic Disease \u00b7 Endocrinology",
+      "market_size": "$130B",
+      "market_pct": 100,
+      "desc": "The hottest space in all of pharma. GLP-1 agonists have redefined obesity treatment. Every major pharma company is racing to compete with Novo and Lilly.",
+      "winner": "Novo Nordisk (Wegovy) and Eli Lilly (Zepbound) are the dominant duopoly. The oral pill race will define the next decade of the market.",
+      "winner_flag": "Novo + Lilly Duopoly",
+      "insights": [
+        {
+          "k": "Scale",
+          "h": "$130B Market by 2030",
+          "b": "GLP-1 obesity drugs are projected to become the largest drug class in pharma history. This is a macro event for the entire healthcare system."
+        },
+        {
+          "k": "Next Frontier",
+          "h": "Oral vs Injectable",
+          "b": "Whoever cracks convenient, effective oral dosing at scale captures enormous incremental market share."
+        },
+        {
+          "k": "Indication Expansion",
+          "h": "Beyond Weight Loss",
+          "b": "GLP-1s now in trials for T2D, heart failure, sleep apnea, NASH, CKD, addiction, and Alzheimer's. Each is a multi-billion dollar opportunity."
+        }
+      ],
+      "analysis": {
+        "total_drugs": 5,
+        "approved_count": 2,
+        "phase3_count": 0,
+        "phase2_count": 0,
+        "avg_momentum": 58.8,
+        "top_momentum_drug": "Wegovy",
+        "total_enrollment": 5402,
+        "low_risk_count": 2,
+        "companies": 2,
+        "near_term_readouts": 5
+      },
+      "drugs": [
+        {
+          "nct": "NCT03548935",
+          "name": "Wegovy",
+          "generic": "semaglutide 2.4mg",
+          "company": "Novo Nordisk",
+          "indication": "obesity",
+          "phase": "Approved",
+          "enrollment": 1961,
+          "api_status": "COMPLETED",
+          "risk": "low",
+          "momentum": 93,
+          "mechanism": "GLP-1 receptor agonist (weekly subcutaneous injection)",
+          "desig": "Fast Track",
+          "readout": "CKD + addiction trials readout 2025",
+          "readout_year": 2025,
+          "edge": "15% weight loss. SELECT trial: 20% CV risk reduction \u2014 first weight loss drug with proven CV benefit.",
+          "insight": "Created the modern obesity market. SELECT (NEJM 2023): 20% MACE reduction transformed prescriber/payer perception from lifestyle drug to essential cardiovascular medicine. Indication expansion machine."
+        },
+        {
+          "nct": "NCT04184622",
+          "name": "Zepbound",
+          "generic": "tirzepatide",
+          "company": "Eli Lilly",
+          "indication": "obesity",
+          "phase": "Approved",
+          "enrollment": 2539,
+          "api_status": "COMPLETED",
+          "risk": "low",
+          "momentum": 93,
+          "mechanism": "Dual GLP-1/GIP receptor agonist (weekly subcutaneous)",
+          "desig": "Fast Track",
+          "readout": "SURMOUNT-5 head-to-head vs Wegovy 2025",
+          "readout_year": 2025,
+          "edge": "22.5% weight loss \u2014 numerically best-in-class. OSA approved 2024. Direct head-to-head vs Wegovy ongoing.",
+          "insight": "SURMOUNT-1: 22.5% weight loss \u2014 best in class. OSA approved 2024. SURMOUNT-5 head-to-head vs Wegovy is the most watched obesity trial. GIP dual agonism may preserve lean muscle mass during weight loss."
+        },
+        {
+          "nct": "NCT05549232",
+          "name": "CagriSema",
+          "generic": "cagrilintide + semaglutide",
+          "company": "Novo Nordisk",
+          "indication": "obesity",
+          "phase": "N/A",
+          "enrollment": 22,
+          "api_status": "COMPLETED",
+          "risk": "high",
+          "momentum": 36,
+          "mechanism": "GLP-1 + amylin dual agonist combination",
+          "desig": "Fast Track",
+          "readout": "REDEFINE Phase 3 readout 2025",
+          "readout_year": 2025,
+          "edge": "~25% weight loss in Phase 2. Amylin mechanism additive to GLP-1 \u2014 may break the 25% ceiling.",
+          "insight": "REDEFINE Phase 3 ongoing. If 25%+ weight loss confirmed, Novo maintains best-in-class vs tirzepatide. Amylin combination is mechanistically novel \u2014 different satiety pathway."
+        },
+        {
+          "nct": "NCT05929443",
+          "name": "Retatrutide",
+          "generic": "retatrutide",
+          "company": "Eli Lilly",
+          "indication": "obesity",
+          "phase": "N/A",
+          "enrollment": 80,
+          "api_status": "UNKNOWN",
+          "risk": "high",
+          "momentum": 36,
+          "mechanism": "Triple GLP-1/GIP/glucagon receptor agonist",
+          "desig": "Fast Track",
+          "readout": "Phase 3 interim data 2026",
+          "readout_year": 2026,
+          "edge": "~24% weight loss Phase 2. Glucagon receptor component increases energy expenditure beyond reduced intake.",
+          "insight": "Lilly's next-gen triple agonist. Glucagon component increases metabolic rate \u2014 potential for surgical-level 30%+ weight loss. Phase 2: 24.2% dose-dependent loss."
+        },
+        {
+          "nct": "NCT05557656",
+          "name": "Orforglipron",
+          "generic": "orforglipron",
+          "company": "Eli Lilly",
+          "indication": "obesity",
+          "phase": "N/A",
+          "enrollment": 800,
+          "api_status": "UNKNOWN",
+          "risk": "high",
+          "momentum": 36,
+          "mechanism": "Oral non-peptide GLP-1 receptor agonist (once daily pill)",
+          "desig": "Fast Track",
+          "readout": "ATTAIN-MAINTAIN Phase 3 readout 2025",
+          "readout_year": 2025,
+          "edge": "Once-daily oral pill \u2014 no injection. Removes #1 patient adoption barrier: needle aversion.",
+          "insight": "Most commercially significant obesity pipeline asset. Effective oral GLP-1 removes needle aversion \u2014 the single largest patient barrier. Phase 2: ~15% weight loss. Opens GLP-1 to majority who refuse injections."
+        }
+      ]
+    },
+    "als": {
+      "name": "ALS \u2014 Amyotrophic Lateral Sclerosis",
+      "kicker": "Neurology \u00b7 Motor Neuron Disease",
+      "market_size": "$1.8B",
+      "market_pct": 14,
+      "desc": "ALS kills motor neurons \u2014 most patients die within 2\u20135 years. Only 2\u20133 treatments exist with modest benefit. Recent genetic insights are finally creating druggable targets.",
+      "winner": "No clear winner yet. Tofersen (Biogen) for SOD1-ALS is the only genetically-targeted approval. FUS and C9orf72 gene silencing are the most credible next wave.",
+      "winner_flag": "High Unmet Need",
+      "insights": [
+        {
+          "k": "The Biology",
+          "h": "Genetics Unlocking ALS",
+          "b": "~10% of ALS is familial with known mutations (SOD1, C9orf72, FUS, TDP-43). These subtypes are now druggable with ASOs and gene silencing."
+        },
+        {
+          "k": "Regulatory Edge",
+          "h": "Accelerated Pathways",
+          "b": "ALS qualifies for Orphan Drug, Fast Track, and often Breakthrough designation. FDA accepts functional endpoints with smaller trials."
+        },
+        {
+          "k": "Key Risk",
+          "h": "Trial Design Challenge",
+          "b": "ALS progression is highly variable \u2014 making placebo-controlled trials complex. Platform trials are emerging as a more efficient design."
+        }
+      ],
+      "analysis": {
+        "total_drugs": 5,
+        "approved_count": 1,
+        "phase3_count": 2,
+        "phase2_count": 1,
+        "avg_momentum": 65.6,
+        "top_momentum_drug": "Qalsody",
+        "total_enrollment": 556,
+        "low_risk_count": 2,
+        "companies": 4,
+        "near_term_readouts": 5
+      },
+      "drugs": [
+        {
+          "nct": "NCT02623699",
+          "name": "Qalsody",
+          "generic": "tofersen",
+          "company": "Biogen",
+          "indication": "als",
+          "phase": "Approved",
+          "enrollment": 176,
+          "api_status": "COMPLETED",
+          "risk": "low",
+          "momentum": 97,
+          "mechanism": "Antisense oligonucleotide \u2014 SOD1 gene silencing",
+          "desig": "Accelerated Approval",
+          "readout": "Confirmatory trial readout 2025",
+          "readout_year": 2025,
+          "edge": "First genetically-targeted ALS therapy. Proof-of-concept for gene silencing in ALS.",
+          "insight": "FDA accelerated approval April 2023. Reduced SOD1 protein and NfL biomarker. Confirmatory trial ongoing. Proves gene silencing works in ALS \u2014 platform validation enabling FUS and C9orf72 programs."
+        },
+        {
+          "nct": "NCT04768972",
+          "name": "ION363",
+          "generic": "jacifusen",
+          "company": "Ionis / Biogen",
+          "indication": "als",
+          "phase": "Phase III",
+          "enrollment": 89,
+          "api_status": "ACTIVE_NOT_RECRUITING",
+          "risk": "medium",
+          "momentum": 66,
+          "mechanism": "FUS gene silencing (antisense oligonucleotide)",
+          "desig": "Orphan Drug",
+          "readout": "Phase 3 readout 2026",
+          "readout_year": 2026,
+          "edge": "FUS-ALS is younger-onset and more aggressive. Compassionate use in Jaci Hermstad drove rapid development.",
+          "insight": "Developed at unprecedented speed after compassionate use showed clear slowing. FUS-ALS affects patients ~35-40 years old. If Phase 3 positive, validates gene silencing platform broadly for ALS."
+        },
+        {
+          "nct": "NCT04856982",
+          "name": "ATLAS Trial",
+          "generic": "tofersen presymptomatic",
+          "company": "Biogen",
+          "indication": "als",
+          "phase": "Phase III",
+          "enrollment": 158,
+          "api_status": "ACTIVE_NOT_RECRUITING",
+          "risk": "low",
+          "momentum": 88,
+          "mechanism": "SOD1 silencing in presymptomatic carriers (prevention)",
+          "desig": "Breakthrough Therapy",
+          "readout": "ATLAS prevention data 2026",
+          "readout_year": 2026,
+          "edge": "Treating SOD1 carriers BEFORE symptoms \u2014 prevention paradigm. Could potentially prevent ALS entirely.",
+          "insight": "Treating SOD1 mutation carriers before symptoms appear. If gene silencing before neuron death works, could prevent ALS. Most exciting ALS concept in decades. Will define future of genetic ALS treatment."
+        },
+        {
+          "nct": "NCT05886010",
+          "name": "AMX0035",
+          "generic": "PB/TUDCA next-gen",
+          "company": "Amylyx",
+          "indication": "als",
+          "phase": "N/A",
+          "enrollment": 120,
+          "api_status": "UNKNOWN",
+          "risk": "high",
+          "momentum": 33,
+          "mechanism": "Mitochondrial + ER stress modulator (next-gen)",
+          "desig": "Orphan Drug",
+          "readout": "Phase 2 data 2026",
+          "readout_year": 2026,
+          "edge": "Rebuilding after Relyvrio withdrawal. Underlying mitochondrial biology remains valid.",
+          "insight": "Amylyx rebuilding after voluntary Relyvrio withdrawal (PHOENIX Phase 3 negative, Sept 2023). Biology remains credible. High risk given prior failure but different molecular approach."
+        },
+        {
+          "nct": "NCT03815916",
+          "name": "CNM-Au8",
+          "generic": "CNM-Au8",
+          "company": "Clene Nanomedicine",
+          "indication": "als",
+          "phase": "Phase II",
+          "enrollment": 13,
+          "api_status": "COMPLETED",
+          "risk": "high",
+          "momentum": 44,
+          "mechanism": "Catalytic gold nanocrystals \u2014 neuronal energy metabolism",
+          "desig": "Orphan Drug",
+          "readout": "RESCUE-ALS Phase 2 data 2025",
+          "readout_year": 2025,
+          "edge": "Novel mechanism \u2014 catalytic nanocrystals boost neuronal energy. Entirely new class if positive.",
+          "insight": "Highly novel \u2014 catalytic gold nanocrystals improve mitochondrial efficiency in motor neurons. Phase 2 data 2025. Long shot but high upside asymmetry \u2014 the kind of binary bet analysts watch carefully."
+        }
+      ]
+    }
+  }
+}
