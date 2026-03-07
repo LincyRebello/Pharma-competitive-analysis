@@ -18,7 +18,7 @@ html{scroll-behavior:smooth;}
 body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;}
 
 .masthead{background:var(--ink);color:var(--bg);padding:0 3rem;display:flex;align-items:center;justify-content:space-between;height:44px;border-bottom:3px solid var(--red);}
-.masthead-txt{font-family:'Barlow Condensed',sans-serif;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(245,242,235,0.45);}
+.masthead-txt{font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(245,242,235,0.75);}
 
 header{background:var(--paper);border-bottom:2px solid var(--ink);padding:3rem 3rem 2rem;position:relative;overflow:hidden;}
 .header-rule{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;}
@@ -46,12 +46,12 @@ header{background:var(--paper);border-bottom:2px solid var(--ink);padding:3rem 3
 .search-count{font-family:'Barlow Condensed',sans-serif;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--red);white-space:nowrap;}
 
 .nav-strip{background:#231f1a;padding:0 3rem;display:flex;align-items:center;gap:0;overflow-x:auto;position:sticky;top:0;z-index:100;}
-.nav-btn{font-family:'Barlow Condensed',sans-serif;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.85rem 1.2rem;border:none;background:transparent;color:rgba(245,242,235,0.42);cursor:pointer;border-bottom:3px solid transparent;transition:all 0.2s;white-space:nowrap;}
+.nav-btn{font-family:'Barlow Condensed',sans-serif;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.85rem 1.2rem;border:none;background:transparent;color:rgba(245,242,235,0.82);cursor:pointer;border-bottom:3px solid transparent;transition:all 0.2s;white-space:nowrap;}
 .nav-btn:hover{color:var(--bg);}
 .nav-btn.active{color:var(--bg);border-bottom-color:var(--red);}
 .nav-count{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;background:rgba(255,255,255,0.07);border-radius:2px;font-size:0.56rem;margin-left:0.3rem;}
 .nav-sep{width:1px;height:24px;background:rgba(255,255,255,0.08);margin:0 0.5rem;}
-.nav-tl-btn{margin-left:auto;font-family:'Barlow Condensed',sans-serif;font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.85rem 1.2rem;border:none;background:transparent;color:rgba(245,242,235,0.4);cursor:pointer;border-bottom:3px solid transparent;transition:all 0.2s;white-space:nowrap;}
+.nav-tl-btn{margin-left:auto;font-family:'Barlow Condensed',sans-serif;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.9rem 1.3rem;border:none;background:transparent;color:rgba(245,242,235,0.8);cursor:pointer;border-bottom:3px solid transparent;transition:all 0.2s;white-space:nowrap;}
 .nav-tl-btn:hover,.nav-tl-btn.active{color:var(--bg);border-bottom-color:#b8860b;}
 
 .main{padding:2.5rem 3rem;max-width:1400px;margin:0 auto;}
@@ -100,18 +100,18 @@ header{background:var(--paper);border-bottom:2px solid var(--ink);padding:3rem 3
 
 .battlefield{display:flex;flex-direction:column;gap:1px;border:1.5px solid var(--border2);background:var(--border2);margin-bottom:1.5rem;}
 .bf-head{display:grid;grid-template-columns:165px 1fr 100px 115px 130px 80px;gap:0;background:var(--ink);padding:0.55rem 1.2rem;}
-.bh{font-family:'Barlow Condensed',sans-serif;font-size:0.55rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(245,242,235,0.38);}
+.bh{font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(245,242,235,0.38);}
 .bf-row{display:grid;grid-template-columns:165px 1fr 100px 115px 130px 80px;gap:0;background:var(--paper);padding:0.9rem 1.2rem;align-items:center;transition:background 0.15s;cursor:pointer;opacity:0;animation:rowIn 0.4s forwards;}
 @keyframes rowIn{to{opacity:1;}}
 .bf-row:hover{background:#edeae2;}
 .drug-brand{font-family:'Libre Baskerville',serif;font-size:0.93rem;font-weight:700;line-height:1;}
-.drug-gen{font-size:0.57rem;color:var(--muted);margin-top:0.1rem;}
-.drug-co{font-size:0.58rem;color:var(--ink2);font-weight:500;margin-top:0.08rem;}
-.mech-cell{font-size:0.63rem;color:var(--ink2);line-height:1.5;padding-right:0.8rem;}
+.drug-gen{font-size:0.68rem;color:var(--muted);margin-top:0.1rem;}
+.drug-co{font-size:0.7rem;color:var(--ink2);font-weight:500;margin-top:0.08rem;}
+.mech-cell{font-size:0.72rem;color:var(--ink2);line-height:1.5;padding-right:0.8rem;}
 .phase-tag{font-family:'Barlow Condensed',sans-serif;font-size:0.58rem;letter-spacing:0.05em;padding:0.17rem 0.5rem;border-radius:2px;display:inline-block;font-weight:600;}
 .enroll-num{font-family:'Libre Baskerville',serif;font-size:0.93rem;font-weight:700;}
-.enroll-sub{font-size:0.52rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;}
-.catalyst-cell{font-size:0.6rem;color:var(--ink2);line-height:1.55;}
+.enroll-sub{font-size:0.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;}
+.catalyst-cell{font-size:0.72rem;color:var(--ink2);line-height:1.55;}
 .risk-tag{font-family:'Barlow Condensed',sans-serif;font-size:0.56rem;letter-spacing:0.08em;text-transform:uppercase;display:inline-flex;align-items:center;gap:0.22rem;font-weight:600;}
 .risk-pip{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
 
