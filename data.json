@@ -1,6 +1,6 @@
 {
   "meta": {
-    "last_updated": "2026-06-29",
+    "last_updated": "2026-07-06",
     "total_drugs": 24,
     "data_source": "ClinicalTrials.gov API v2 + curated analyst content"
   },
@@ -378,7 +378,7 @@
           "indication": "nsclc",
           "phase": "Approved",
           "enrollment": 713,
-          "api_status": "ACTIVE_NOT_RECRUITING",
+          "api_status": "COMPLETED",
           "risk": "low",
           "momentum": 100,
           "mechanism": "KRAS G12C covalent inhibitor",
