@@ -1,6 +1,6 @@
 {
   "meta": {
-    "last_updated": "2026-10-12",
+    "last_updated": "2026-10-19",
     "total_drugs": 24,
     "data_source": "ClinicalTrials.gov API v2 + curated analyst content"
   },
@@ -490,7 +490,7 @@
           "indication": "myeloma",
           "phase": "Approved",
           "enrollment": 187,
-          "api_status": "ACTIVE_NOT_RECRUITING",
+          "api_status": "COMPLETED",
           "risk": "low",
           "momentum": 100,
           "mechanism": "Bispecific antibody (BCMA \u00d7 CD3)",
